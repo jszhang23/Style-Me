@@ -1,17 +1,27 @@
+/*
+ *  changed by Jiesheng Zhang on 8/30/2018
+ *  Fahrenheit and degree centigrade
+ */
 #include <iostream>
 using namespace std;
-
 class temp {
     double f;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
+    temp() : f(32) {
+
+    }
+    double getF() const {
+        return f;
+    }
+    void setF(double p) {
+        f = p;
+    }
+    double getC() const {
         return (f-32)*(5/9);        // NEED TO FIX
     }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    double setC(double c) {
+        f=c*(9/5)+32;
+    } //BUGGY
 };
 
 int main() {
@@ -28,15 +38,15 @@ int main() {
         string junk;
         getline(cin, junk);
     }
-    temp mytemp;
+    temp myTemp;
     if (choice == 1)
-        mytemp.setf(t);
+        myTemp.setF(t);
     else
-        mytemp.setc(t);
+        myTemp.setC(t);
     string a;
-    if (mytemp.getc() < 0)
+    if (myTemp.getC() < 0)
         a="cold";
-    else if (mytemp.getc() > 30)
+    else if (myTemp.getC() > 30)
         a="hot";
     else
         a="beautiful";
