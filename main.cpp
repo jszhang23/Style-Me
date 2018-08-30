@@ -1,45 +1,77 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+class Temperature {
+    double fahrenheit;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
-    }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    Temperature();
+    double getFahrenheit() const;
+    void setFahrenheit(double tempFahrenheit);
+    double getCelsius() const;
+    double setCelsius(double tempCelsius);
 };
 
 int main() {
     int choice = 0;
-    while (!(cin >> choice))
-    {
+    string junk;
+    int currentTemp = 0;
+    
+    cout << "Which scale are you using? 1 = Fahrenheit, 2 = Celsius : " << endl;
+    while (!(cin >> choice)) {
+        cout << " Enter a valid integer, 1 = Fahrenheit, 2 = Celsius : " << endl;
         cin.clear();
-        string junk;
         getline(cin, junk);
     }
-    int t = 0;
-    while (!(cin >> t)) {
+    
+    cout << "What is the current temperature outside?  " << endl;
+    while (!(cin >> currentTemp)) {
+        cout << "Please enter a valid temperature : " << endl;
         cin.clear();
-        string junk;
         getline(cin, junk);
     }
-    temp mytemp;
-    if (choice == 1)
-        mytemp.setf(t);
-    else
-        mytemp.setc(t);
+    
+    Temperature myTemp;
+    
+    if (choice == 1) {
+        myTemp.setFahrenheit(currentTemp);
+        myTemp.setCelsius(myTemp.getCelsius());
+    }
+    else {
+        myTemp.setCelsius(currentTemp);
+        myTemp.setFahrenheit(myTemp.getFahrenheit());
+    }
+    
     string a;
-    if (mytemp.getc() < 0)
-        a="cold";
-    else if (mytemp.getc() > 30)
-        a="hot";
+    
+    if (myTemp.getCelsius() < 0) {
+        a = "cold";
+    }
+    else if (myTemp.getCelsius() > 30) {
+        a = "hot";
+    }
     else
-        a="beautiful";
+    {
+        a = "beautiful";
+    }
     cout << "Hello, " << a << " World!" << endl;
     return 0;
 }
+
+Temperature::Temperature() : fahrenheit(32) {
+};
+
+double Temperature::getFahrenheit() const {
+    return fahrenheit;
+}
+
+void Temperature::setFahrenheit(double tempFahrenheit) {
+    fahrenheit = tempFahrenheit;
+}
+
+double Temperature::getCelsius() const {
+    return (fahrenheit - 32) * (5 / 9);
+}// Buggy
+
+double Temperature::setCelsius(double tempCelsius) {
+    fahrenheit=(tempCelsius * (9/5)) + 32;
+} //BUGGY
