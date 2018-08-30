@@ -1,45 +1,72 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+/*
+ * This program contains:
+ * Temp class
+ *
+ * TODO: Change temperature selection to be only one accepted integer for celsius instead of any
+ */
+
+class localTemperatureGreeting {
+    double fahrenheit;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+    localTemperatureGreeting() : fahrenheit(32) {
+
     }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    double getFahrenheit() const {
+        return fahrenheit;
+    }
+    void setFahrenheit(double newTemp) {
+        fahrenheit = newTemp;
+    }
+    double getCelsius() const {
+        return (fahrenheit-32)*((float)5/(float)9);
+    }
+    double setCelsius(double celsius) {
+        fahrenheit = (celsius*((float)9/(float)5)+32);
+    }
 };
 
-int main() {
-    int choice = 0;
-    while (!(cin >> choice))
-    {
+void testLocalTemperatureGreeting() {
+    cout << endl << "Testing the localTemperatureGreeting Class" << endl;
+    cout << "Enter 1 for Fahrenheit, any other int for Celsius: ";
+    int degreeChoice = 0;
+    while (!(cin >> degreeChoice)) {
         cin.clear();
         string junk;
         getline(cin, junk);
+        cout << "Enter an integer: ";
     }
-    int t = 0;
-    while (!(cin >> t)) {
+    int myTemp = 0;
+    cout << "Enter your local temperature: ";
+    while (!(cin >> myTemp)) {
         cin.clear();
         string junk;
         getline(cin, junk);
+        cout << "Enter an integer for temperature: ";
     }
-    temp mytemp;
-    if (choice == 1)
-        mytemp.setf(t);
-    else
-        mytemp.setc(t);
+    localTemperatureGreeting localTemp;
+    if (degreeChoice == 1) {
+        localTemp.setFahrenheit(myTemp);
+    }
+    else {
+        localTemp.setCelsius(myTemp);
+    }
     string a;
-    if (mytemp.getc() < 0)
-        a="cold";
-    else if (mytemp.getc() > 30)
-        a="hot";
-    else
-        a="beautiful";
+    if (localTemp.getCelsius() < 0) {
+        a = "cold";
+    }
+    else if (localTemp.getCelsius() > 30) {
+        a = "hot";
+    }
+    else {
+        a = "beautiful";
+    }
+
     cout << "Hello, " << a << " World!" << endl;
+}
+int main() {
+    testLocalTemperatureGreeting();
     return 0;
 }
