@@ -24,8 +24,8 @@ public:
     // requires: new value
     // modifies: field being set
     // effects: sets field to new specified value
-    void set_fahrenheit(double tempF);
-    void set_celsius(double tempC);
+    void set_fahrenheit(double temp_f);
+    void set_celsius(double temp_c);
 };
 
 /* * * * * Global Function Declarations * * * * */
@@ -75,14 +75,14 @@ Temperature::Temperature() : fahrenheit(32) {}
 double Temperature::get_fahrenheit() const {
     return fahrenheit;
 }
-void Temperature::set_fahrenheit(double tempF) {
-    fahrenheit = tempF;
+void Temperature::set_fahrenheit(double temp_f) {
+    fahrenheit = temp_f;
 }
 double Temperature::get_celsius() const {
     return (fahrenheit - 32) * (5./9);
 }
-void Temperature::set_celsius(double tempC) {
-    fahrenheit = tempC * (9./5) + 32;
+void Temperature::set_celsius(double temp_c) {
+    fahrenheit = temp_c * (9./5) + 32;
 }
 
 /* * * * * Global Function Implementations * * * * */
