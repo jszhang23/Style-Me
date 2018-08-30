@@ -3,12 +3,13 @@ using namespace std;
 
 class Temperature {
     double fahrenheit;
+    double celsius;
 public:
     Temperature();
     double getFahrenheit() const;
     void setFahrenheit(double tempFahrenheit);
     double getCelsius() const;
-    double setCelsius(double tempCelsius);
+    void setCelsius(double tempCelsius);
 };
 
 int main() {
@@ -18,14 +19,14 @@ int main() {
     
     cout << "Which scale are you using? 1 = Fahrenheit, 2 = Celsius : " << endl;
     while (!(cin >> choice)) {
-        cout << " Enter a valid integer, 1 = Fahrenheit, 2 = Celsius : " << endl;
+        cout << " Enter temperatureAdjective valid integer, 1 = Fahrenheit, 2 = Celsius : " << endl;
         cin.clear();
         getline(cin, junk);
     }
     
     cout << "What is the current temperature outside?  " << endl;
     while (!(cin >> currentTemp)) {
-        cout << "Please enter a valid temperature : " << endl;
+        cout << "Please enter temperatureAdjective valid temperature : " << endl;
         cin.clear();
         getline(cin, junk);
     }
@@ -34,30 +35,28 @@ int main() {
     
     if (choice == 1) {
         myTemp.setFahrenheit(currentTemp);
-        myTemp.setCelsius(myTemp.getCelsius());
     }
     else {
         myTemp.setCelsius(currentTemp);
-        myTemp.setFahrenheit(myTemp.getFahrenheit());
     }
     
-    string a;
+    string temperatureAdjective;
     
     if (myTemp.getCelsius() < 0) {
-        a = "cold";
+        temperatureAdjective = "cold";
     }
     else if (myTemp.getCelsius() > 30) {
-        a = "hot";
+        temperatureAdjective = "hot";
     }
     else
     {
-        a = "beautiful";
+        temperatureAdjective = "beautiful";
     }
-    cout << "Hello, " << a << " World!" << endl;
+    cout << "Hello, " << temperatureAdjective << " World!" << endl;
     return 0;
 }
 
-Temperature::Temperature() : fahrenheit(32) {
+Temperature::Temperature() : fahrenheit(32), celsius(0) {
 };
 
 double Temperature::getFahrenheit() const {
@@ -66,12 +65,14 @@ double Temperature::getFahrenheit() const {
 
 void Temperature::setFahrenheit(double tempFahrenheit) {
     fahrenheit = tempFahrenheit;
+    //celsius = (tempFahrenheit - (double)32) * (double)(5 / 9);
 }
 
 double Temperature::getCelsius() const {
-    return (fahrenheit - 32) * (5 / 9);
-}// Buggy
+    return celsius;
+}
 
-double Temperature::setCelsius(double tempCelsius) {
+void Temperature::setCelsius(double tempCelsius) {
     fahrenheit=(tempCelsius * (9/5)) + 32;
-} //BUGGY
+    celsius = tempCelsius;
+}
