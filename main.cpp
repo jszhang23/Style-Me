@@ -1,45 +1,64 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+// Class Temperature converts Celsius to Fahrenheit or Fahrenheit to Celsius
+
+class Temperature {
+    double fahrenheit;
+
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
-    }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    temperature() : fahrenheit(32) {}
+
+
+    double getFahrenheit() const {
+        return fahrenheit;}
+
+    // Takes celsius as a parameter and converts it to fahrenheit
+    void setFahrenheit(double celsius) {
+        fahrenheit=(celsius * (9/5) + 32); }
+
+    double getCelsius() const {
+        return celsius;}        // NEED TO FIX
+
+    // Takes fahrenheit as a parameter and converts it to celsius
+    double setCelsius(double fahrenheit) {
+        celsius= (fahrenheit-32)*(5/9);} //BUGGY
 };
 
 int main() {
+    cout << "Enter 1 for celsius or 1 for celsius";
     int choice = 0;
-    while (!(cin >> choice))
-    {
+    while (!(cin >> choice)) {
+        cin.clear();
+        string choice;
+        getline(cin, choice);
+        print "Please enter an integer"
+    }
+
+    int temperature = 0;
+
+    while (!(cin >> temperature)) {
         cin.clear();
         string junk;
-        getline(cin, junk);
-    }
-    int t = 0;
-    while (!(cin >> t)) {
-        cin.clear();
-        string junk;
-        getline(cin, junk);
-    }
-    temp mytemp;
+        getline(cin, junk); }
+
+    Temperature myTemperature;
+
     if (choice == 1)
-        mytemp.setf(t);
+        myTemperature.setFahrenheit(temperature);
+
     else
-        mytemp.setc(t);
+        myTemperature.setCelsius(temperature);
     string a;
-    if (mytemp.getc() < 0)
+
+    if (myTemperature.getCelsius() < 0)
         a="cold";
-    else if (mytemp.getc() > 30)
+
+    else if (myTemperature.getCelsius() > 30)
         a="hot";
+
     else
         a="beautiful";
-    cout << "Hello, " << a << " World!" << endl;
+    cout << "It is " << a << " outside!" << endl;
     return 0;
 }
