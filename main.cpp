@@ -2,22 +2,27 @@
 using namespace std;
 
 class temp {
-    double f;
+    double fahrenheit;
+    double celsius;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+    temp() : fahrenheit(32) {}
+    double get_Fahrenheit() const {
+        return fahrenheit;
     }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    void set_Fahrenheit(double far) {
+        fahrenheit = far;
+    }
+    double get_Celsius() const {
+        return (fahrenheit-32)/(9/5);        // NEED TO FIX
+    }
+    double set_Celsius(double cel) {
+        celsius = (cel+32)*(9/5);
+    } //BUGGY
 };
 
 int main() {
     int choice = 0;
-    while (!(cin >> choice))
-    {
+    while (!(cin >> choice)) {
         cin.clear();
         string junk;
         getline(cin, junk);
@@ -30,13 +35,13 @@ int main() {
     }
     temp mytemp;
     if (choice == 1)
-        mytemp.setf(t);
+        mytemp.set_Fahrenheit(t);
     else
-        mytemp.setc(t);
+        mytemp.set_Celsius(t);
     string a;
-    if (mytemp.getc() < 0)
+    if (mytemp.get_Celsius() < 0)
         a="cold";
-    else if (mytemp.getc() > 30)
+    else if (mytemp.get_Celsius() > 30)
         a="hot";
     else
         a="beautiful";
