@@ -1,45 +1,147 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+double ConvertFahrenheitToCelsius(double pFahrenheitTemp);
+double ConvertCelsiusToFahrenheit(double pCelsiusTemp);
+
+class Temperature
+{
+private:
+    double fFahrenheitTemp;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
-    }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    Temperature();
+    double GetFahrenheitTemp();
+    double GetCelsiusTemp();
+    void SetCelsiusTemp(double pCelsiusTemp);
+    void SetFahrenheitTemp(double pFahrenheitTemp);
 };
 
-int main() {
-    int choice = 0;
-    while (!(cin >> choice))
+/**
+ * A tool for a user to determine how their day will go depending on the outside teperature.
+ * This program supports a user entering the temperature in either the Fahrenheit or Celsius format.
+ *
+ * @return 0
+ */
+int main()
+{
+    int tempartureSystem = 0;
+    printf("Welcome to my temperature analysis tool!\n");
+    printf("Please enter 0  to analyze a Fahrenheit temperature, or any other int to analyze a Celsius temperature: ");
+    while (!(cin >> tempartureSystem))
     {
+        printf("Please enter an int: ");
         cin.clear();
         string junk;
         getline(cin, junk);
     }
-    int t = 0;
-    while (!(cin >> t)) {
+
+    int inputTemp = 0;
+
+    printf("Please enter your temperature: ");
+    while (!(cin >> inputTemp))
+    {
+        printf("Please enter an int: ");
         cin.clear();
         string junk;
         getline(cin, junk);
     }
-    temp mytemp;
-    if (choice == 1)
-        mytemp.setf(t);
+
+    Temperature myTemp;
+    if (tempartureSystem == 1)
+    {
+        myTemp.SetFahrenheitTemp(inputTemp);
+    }
     else
-        mytemp.setc(t);
+    {
+        myTemp.SetCelsiusTemp(inputTemp);
+    }
+
     string a;
-    if (mytemp.getc() < 0)
+    if (myTemp.GetCelsiusTemp() < 0)
+    {
         a="cold";
-    else if (mytemp.getc() > 30)
+    }
+    else if (myTemp.GetCelsiusTemp() > 30)
+    {
         a="hot";
+    }
     else
+    {
         a="beautiful";
+    }
+
     cout << "Hello, " << a << " World!" << endl;
     return 0;
+}
+
+
+/**
+ * Requires: A double representing a Fahrenheit temp
+ * Modifies: Nothing
+ * Effects: Calculates and returns the Celsius version of a given Fahrenheit temperature.
+ */
+double ConvertFahrenheitToCelsius(double pFahrenheitTemp)
+{
+    return (pFahrenheitTemp - 32) * (5.0/9.0);
+}
+
+/**
+ * Requires: A double representing a Fahrenheit temp
+ * Modifies: Nothing
+ * Effects: Calculates and returns the Fahrenheit version of a given Celsius temperature.
+ */
+double ConvertCelsiusToFahrenheit(double pCelsiusTemp)
+{
+    return (pCelsiusTemp + 32) * (9.0/5.0);
+}
+
+/**
+ * Requires: Nothing
+ * Modifies: Nothing
+ * Effects: Initializes fFahrenheitTemp to 0
+ */
+Temperature::Temperature()
+{
+    fFahrenheitTemp = 0;
+}
+
+
+/**
+ * Requires: Nothing
+ * Modifies: Nothing
+ * Effects: Returns the Fahrenheit version of the fFahrenheitTemp
+ */
+double Temperature::GetFahrenheitTemp()
+{
+    return fFahrenheitTemp;
+}
+
+/**
+ * Requires: ConvertFahrenheitToCelsius
+ * Modifies: Nothing
+ * Effects: Calculates and returns the Celsius version of the fFahrenheitTemp
+ */
+double Temperature::GetCelsiusTemp()
+{
+    return ConvertFahrenheitToCelsius(fFahrenheitTemp);
+}
+
+/**
+ * Requires: ConvertCelsiusToFahrenheit
+ * Modifies: fFahrenheitTemp
+ * Effects: Converts the given pCelsiusTemp to Fahrenheit and updates fFahrenheitTemp
+ */
+void Temperature::SetCelsiusTemp(double pCelsiusTemp)
+{
+    fFahrenheitTemp = ConvertCelsiusToFahrenheit(pCelsiusTemp);
+}
+
+/**
+ * Requires: None
+ * Modifies: fFahrenheitTemp
+ * Effects: updates fFahrenheitTemp
+ */
+void Temperature::SetFahrenheitTemp(double pFahrenheitTemp)
+{
+    fFahrenheitTemp = pFahrenheitTemp;
 }
