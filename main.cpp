@@ -1,7 +1,18 @@
 #include <iostream>
 using namespace std;
 
+/**
+ * Requires: A double representing a Fahrenheit temp
+ * Modifies: Nothing
+ * Effects: Calculates and returns the Celsius version of a given Fahrenheit temperature.
+ */
 double ConvertFahrenheitToCelsius(double pFahrenheitTemp);
+
+/**
+ * Requires: A double representing a Fahrenheit temp
+ * Modifies: Nothing
+ * Effects: Calculates and returns the Fahrenheit version of a given Celsius temperature.
+ */
 double ConvertCelsiusToFahrenheit(double pCelsiusTemp);
 
 class Temperature
@@ -9,10 +20,39 @@ class Temperature
 private:
     double fFahrenheitTemp;
 public:
+    /**
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: Initializes fFahrenheitTemp to 0
+     */
     Temperature();
+
+    /**
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: Returns the Fahrenheit version of the fFahrenheitTemp
+     */
     double GetFahrenheitTemp();
+
+    /**
+     * Requires: ConvertFahrenheitToCelsius
+     * Modifies: Nothing
+     * Effects: Calculates and returns the Celsius version of the fFahrenheitTemp
+     */
     double GetCelsiusTemp();
+
+    /**
+     * Requires: ConvertCelsiusToFahrenheit
+     * Modifies: fFahrenheitTemp
+     * Effects: Converts the given pCelsiusTemp to Fahrenheit and updates fFahrenheitTemp
+     */
     void SetCelsiusTemp(double pCelsiusTemp);
+
+    /**
+     * Requires: None
+     * Modifies: fFahrenheitTemp
+     * Effects: updates fFahrenheitTemp
+     */
     void SetFahrenheitTemp(double pFahrenheitTemp);
 };
 
@@ -74,73 +114,37 @@ int main()
     return 0;
 }
 
-
-/**
- * Requires: A double representing a Fahrenheit temp
- * Modifies: Nothing
- * Effects: Calculates and returns the Celsius version of a given Fahrenheit temperature.
- */
 double ConvertFahrenheitToCelsius(double pFahrenheitTemp)
 {
     return (pFahrenheitTemp - 32) * (5.0/9.0);
 }
 
-/**
- * Requires: A double representing a Fahrenheit temp
- * Modifies: Nothing
- * Effects: Calculates and returns the Fahrenheit version of a given Celsius temperature.
- */
 double ConvertCelsiusToFahrenheit(double pCelsiusTemp)
 {
     return (pCelsiusTemp + 32) * (9.0/5.0);
 }
 
-/**
- * Requires: Nothing
- * Modifies: Nothing
- * Effects: Initializes fFahrenheitTemp to 0
- */
 Temperature::Temperature()
 {
     fFahrenheitTemp = 0;
 }
 
 
-/**
- * Requires: Nothing
- * Modifies: Nothing
- * Effects: Returns the Fahrenheit version of the fFahrenheitTemp
- */
 double Temperature::GetFahrenheitTemp()
 {
     return fFahrenheitTemp;
 }
 
-/**
- * Requires: ConvertFahrenheitToCelsius
- * Modifies: Nothing
- * Effects: Calculates and returns the Celsius version of the fFahrenheitTemp
- */
 double Temperature::GetCelsiusTemp()
 {
     return ConvertFahrenheitToCelsius(fFahrenheitTemp);
 }
 
-/**
- * Requires: ConvertCelsiusToFahrenheit
- * Modifies: fFahrenheitTemp
- * Effects: Converts the given pCelsiusTemp to Fahrenheit and updates fFahrenheitTemp
- */
 void Temperature::SetCelsiusTemp(double pCelsiusTemp)
 {
     fFahrenheitTemp = ConvertCelsiusToFahrenheit(pCelsiusTemp);
 }
 
-/**
- * Requires: None
- * Modifies: fFahrenheitTemp
- * Effects: updates fFahrenheitTemp
- */
 void Temperature::SetFahrenheitTemp(double pFahrenheitTemp)
 {
     fFahrenheitTemp = pFahrenheitTemp;
