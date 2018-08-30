@@ -2,41 +2,70 @@
 using namespace std;
 
 class temp {
-    double f;
+
+    double ferinheight;
+
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+    temp() : ferinheight(32) {}
+
+    double getFerinheight() const
+    {
+        return ferinheight;
     }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+
+    void setFerinheight(double paremeter)
+    {
+        ferinheight = paremeter;
+    }
+
+    double getCelclus() const
+    {
+        return (ferinheight-32)*(5/9);        // NEED TO FIX
+    }
+
+    double setCelclus(double celclus)
+    {
+        ferinheight=(celclus*(9/5)+32);
+    } //BUGGY
 };
 
 int main() {
+
     int choice = 0;
+
+
+    cout<<"Enter a choice"<<endl; //Prompt the user
+
+    //Enters an integer
     while (!(cin >> choice))
     {
         cin.clear();
         string junk;
         getline(cin, junk);
+        cout<<"Invalid Choice"<<endl;
     }
-    int t = 0;
-    while (!(cin >> t)) {
+
+    int tempature = 0;
+
+    cout<<"Enter a tempaturez"<<endl; //Prompt the user
+    while (!(cin >> tempature))
+    {
         cin.clear();
         string junk;
         getline(cin, junk);
+        cout<<"Invalid Choice"<<endl;
     }
-    temp mytemp;
+
+    temp my_temp;
+
     if (choice == 1)
-        mytemp.setf(t);
+        my_temp.setFerinheight(t);
     else
-        mytemp.setc(t);
+        my_temp.setCelclus(t);
     string a;
-    if (mytemp.getc() < 0)
+    if (my_temp.getCelclus() < 0)
         a="cold";
-    else if (mytemp.getc() > 30)
+    else if (my_temp.getCelclus() > 30)
         a="hot";
     else
         a="beautiful";
