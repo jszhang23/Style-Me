@@ -59,6 +59,6 @@ int main() {
 
     else
         a="beautiful";
-    cout << "It is " << a << " outside!" << endl;
+    cout << "It is " << a << " outside!!" << endl;
     return 0;
 }
