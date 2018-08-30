@@ -1,18 +1,40 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+class Temperature {
+    double fahrenheit;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
-    }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    //Constructor
+    temperature();
+
+    //Getter
+    double getTemperature() const;
+
+    //Setters
+
+    /*
+     * Requires: A double value for the new fahrenheit temperature
+     * Modifies: The value of fahrenheit
+     * Effects: Nothing
+     */
+    void setTemperature(double newTemp);
+
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: Returns fahrenheit as a celsius value
+     */
+    double getTemperatureInCelsius() const;
+
+    /*
+     * Requires: A double celsius value
+     * Modifies: The value of fahrenheit as celsius * 9/5 + 32
+     * Effects: Nothing
+     */
+    void setTemperatureAsCelsius(double celsius);
 };
+
+/********************************MAIN***************************/
 
 int main() {
     int choice = 0;
@@ -28,11 +50,11 @@ int main() {
         string junk;
         getline(cin, junk);
     }
-    temp mytemp;
+    Temperature myTemperature;
     if (choice == 1)
-        mytemp.setf(t);
+        myTemperature.setTemperature(t);
     else
-        mytemp.setc(t);
+        myTemperature.setTemperatureAsCelsius(t);
     string a;
     if (mytemp.getc() < 0)
         a="cold";
@@ -42,4 +64,30 @@ int main() {
         a="beautiful";
     cout << "Hello, " << a << " World!" << endl;
     return 0;
+}
+
+/********************************END MAIN********************/
+
+
+/*******************************DEFINE Temperature Class******************/
+int Temperature::temperature() : fahrenheit(32);
+
+double Temperature::getTemperature() const
+{
+    return fahrenheit;
+}
+
+void Temperature::setTemperature(double newTemp)
+{
+    fahrenheit = newTemp;
+}
+
+double Temperature::getTemperatureInCelsius() const
+{
+    return ((fahrenheit - 32)*(5/9))
+}
+
+void Temperature::setTemperatureAsCelsius(double celsius)
+{
+    fahrenheit = ((celsius*(9/5))+32);
 }
