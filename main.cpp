@@ -1,45 +1,53 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+class Temperature_Converter {
+    double fahr;
+    int f_constant;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+    Temperature_Converter() : fahr(32) {
     }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    double get_Fahrenheit() const {
+        return fahr;
+    }
+    void set_Fahrenheit(double cur_fahr) {
+        fahr = cur_fahr;
+    }
+    double get_Celsius() const {
+        return (fahr - f_constant) * (5/9);
+    }
+    double set_Celsius(double celsius) {
+        fahr = celsius * (9/5) + f_constant;
+    }
 };
 
 int main() {
+    cout << "Enter 1 to begin: ";
     int choice = 0;
-    while (!(cin >> choice))
-    {
+    while (!(cin >> choice)) {
         cin.clear();
         string junk;
         getline(cin, junk);
     }
-    int t = 0;
-    while (!(cin >> t)) {
+    cout << "Enter in a temperature in fahrenheit: ";
+    int temp = 0;
+    while (!(cin >> temp)) {
         cin.clear();
         string junk;
         getline(cin, junk);
     }
-    temp mytemp;
+    Tempurature_Converter my_temp;
     if (choice == 1)
-        mytemp.setf(t);
+        my_temp.set_Fahrenheit(temp);
     else
-        mytemp.setc(t);
-    string a;
-    if (mytemp.getc() < 0)
-        a="cold";
-    else if (mytemp.getc() > 30)
-        a="hot";
+        my_temp.setc(temp);
+    string cpu_reply;
+    if (my_temp.get_Celsius() < 0)
+        cpu_reply="it's cold in celsius";
+    else if (my_temp.get_Celsius() > 30)
+        cpu_reply="it's hot in celsius";
     else
-        a="beautiful";
-    cout << "Hello, " << a << " World!" << endl;
+        cpu_reply="it's temperate in celsius :)";
+    cout << cpu_reply;
     return 0;
 }
