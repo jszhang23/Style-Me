@@ -2,19 +2,26 @@
 using namespace std;
 
 class Temperature {
-    double fahrenheit;
+    double temperature;
+    bool isFahrenheit;
+
 public:
     //Constructor
-    temperature();
+    Temperature();
 
     //Getter
+    /*
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: Returns the value of temperature
+     */
     double getTemperature() const;
 
     //Setters
 
     /*
-     * Requires: A double value for the new fahrenheit temperature
-     * Modifies: The value of fahrenheit
+     * Requires: A double value for the new temperature
+     * Modifies: The value of temperature
      * Effects: Nothing
      */
     void setTemperature(double newTemp);
@@ -22,13 +29,13 @@ public:
     /*
      * Requires: Nothing
      * Modifies: Nothing
-     * Effects: Returns fahrenheit as a celsius value
+     * Effects: Returns temperature as a celsius value
      */
     double getTemperatureInCelsius() const;
 
     /*
-     * Requires: A double celsius value
-     * Modifies: The value of fahrenheit as celsius * 9/5 + 32
+     * Requires: A double value for temperature in Celsius
+     * Modifies: The value of temperature as celsius * 9/5 + 32
      * Effects: Nothing
      */
     void setTemperatureAsCelsius(double celsius);
@@ -38,56 +45,71 @@ public:
 
 int main() {
     int choice = 0;
+    cout << "Enter 1 to use this calculator with Fahrenheit, 0 for Celsuis" << endl;
     while (!(cin >> choice))
     {
+        cout << "Please enter an integer." << endl;
         cin.clear();
         string junk;
         getline(cin, junk);
     }
-    int t = 0;
-    while (!(cin >> t)) {
+    int temp = 0;
+    cout << "Enter what temperature you want to test, in your chosen degree" << endl;
+    while (!(cin >> temp))
+    {
         cin.clear();
         string junk;
         getline(cin, junk);
     }
     Temperature myTemperature;
     if (choice == 1)
-        myTemperature.setTemperature(t);
+        myTemperature.setTemperature(temp);
     else
-        myTemperature.setTemperatureAsCelsius(t);
-    string a;
-    if (mytemp.getc() < 0)
-        a="cold";
-    else if (mytemp.getc() > 30)
-        a="hot";
+        myTemperature.setTemperatureAsCelsius(temp);
+    string descriptor;
+    if (myTemperature.getTemperatureInCelsius() < 0)
+        descriptor="cold";
+    else if (myTemperature.getTemperatureInCelsius() > 30)
+        descriptor="hot";
     else
-        a="beautiful";
-    cout << "Hello, " << a << " World!" << endl;
+        descriptor="beautiful";
+    cout << "Hello, " << descriptor << " World!" << endl;
     return 0;
 }
+
+
 
 /********************************END MAIN********************/
 
 
 /*******************************DEFINE Temperature Class******************/
-int Temperature::temperature() : fahrenheit(32);
+Temperature::Temperature(): temperature(32), isFahrenheit(true) {};
 
 double Temperature::getTemperature() const
 {
-    return fahrenheit;
+    return temperature;
 }
 
 void Temperature::setTemperature(double newTemp)
 {
-    fahrenheit = newTemp;
+    temperature = newTemp;
 }
 
 double Temperature::getTemperatureInCelsius() const
 {
-    return ((fahrenheit - 32)*(5/9))
+    if(isFahrenheit)
+    {
+        return ((temperature - 32)* ((double)5/9));
+    }
+    else
+    {
+        return temperature;
+    }
+
 }
 
 void Temperature::setTemperatureAsCelsius(double celsius)
 {
-    fahrenheit = ((celsius*(9/5))+32);
+    isFahrenheit = false;
+    temperature = ((celsius * ((double)9/5))+32);
 }
