@@ -1,27 +1,12 @@
 /*
  * Changed by JING LU
  */
-#include <iostream>
+
+#include "temperature.h"
+
 using namespace std;
 
-class temp {
-    double fahrenheit;
-    double celsius;
-public:
-    temp() : fahrenheit(32) {}
-    double getFahrenheit() const {
-        return fahrenheit;
-    }
-    void setFahrenheit(double p) {
-        fahrenheit = p;
-    }
-    double getCelsius() const {
-        return (fahrenheit-32)*(9/5);        // NEED TO FIX
-    }
-    double setCelsius(double c) {
-        celsius=(c+32)*(9/5);
-    } //BUGGY
-};
+
 
 int main() {
     int choice = 0;
