@@ -1,17 +1,26 @@
+/*
+ * Changed by JING LU
+ */
 #include <iostream>
 using namespace std;
 
 class temp {
-    double f;
+    double fahrenheit;
+    double celsius;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+    temp() : fahrenheit(32) {}
+    double getFahrenheit() const {
+        return fahrenheit;
     }
-    double setc(double c) { f=(c*(9/5)+32);} //BUGGY
+    void setFahrenheit(double p) {
+        fahrenheit = p;
+    }
+    double getCelsius() const {
+        return (fahrenheit-32)*(9/5);        // NEED TO FIX
+    }
+    double setCelsius(double c) {
+        celsius=(c+32)*(9/5);
+    } //BUGGY
 };
 
 int main() {
@@ -30,13 +39,13 @@ int main() {
     }
     temp mytemp;
     if (choice == 1)
-        mytemp.setf(t);
+        mytemp.setFahrenheit(t);
     else
-        mytemp.setc(t);
+        mytemp.setCelsius(t);
     string a;
-    if (mytemp.getc() < 0)
+    if (mytemp.getCelsius() < 0)
         a="cold";
-    else if (mytemp.getc() > 30)
+    else if (mytemp.getCelsius() > 30)
         a="hot";
     else
         a="beautiful";
