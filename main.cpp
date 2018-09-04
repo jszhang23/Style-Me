@@ -1,15 +1,21 @@
 #include <iostream>
 using namespace std;
 
-class temp {
-    double f;
+// The class temperatureConverter converts Fahrenheit to Celsius.
+class temperatureConverter {
+    double temperature;
 public:
-    temp() : f(32) {}
-    double getf() const {return f;}
-    void setf(double p)
-    { f = p;}
-    double getc() const {
-        return (f-32)*(5/9);        // NEED TO FIX
+    fahrenheitTemperature() : temperature(32) {
+    }
+    double getFahrenheitTemperature() const {
+        return temperature;
+    }
+    void setFahrenheitTemperature(double userInputTemperature) {
+        temperature = userInputTemperature;
+    }
+    double getCelsiusTemperature() {
+        temperature = (temperature-32)*(5/9);
+        return temperature;
     }
     double setc(double c) { f=(c*(9/5)+32);} //BUGGY
 };
